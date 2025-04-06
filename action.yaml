@@ -1,0 +1,22 @@
+name: Validate IAM Role Policies
+description: Validates IAM Terraform roles using OPA and Rego policies.
+
+inputs:
+  tfplan_path:
+    description: Path to the Terraform plan in JSON format.
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install conftest
+      shell: bash
+      run: |
+        wget https://github.com/open-policy-agent/conftest/releases/download/v0.46.0/conftest_Linux_x86_64.tar.gz
+        tar -xzf conftest_Linux_x86_64.tar.gz
+        chmod +x conftest && sudo mv conftest /usr/local/bin/
+
+    - name: Validate IAM Policies with Conftest
+      shell: bash
+      run: |
+        conftest test ${{ inputs.tfplan_path }} --policy ${{ github.action_path }}/policy/iam/
