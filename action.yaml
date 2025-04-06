@@ -19,4 +19,5 @@ runs:
     - name: Validate IAM Policies with Conftest
       shell: bash
       run: |
+        cat ${{ inputs.tfplan_path }}
         conftest test ${{ inputs.tfplan_path }} --policy ${{ github.action_path }}/policy/iam/
