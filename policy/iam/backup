@@ -1,0 +1,27 @@
+# Only check resources that accept tags.
+taggable(resource) {
+    t := resource.type
+    not (t in non_taggable)
+}
+
+
+# Given a resource from the Terraform plan, extract missing required tags.
+missing_tags(resource) := { tag |
+  tag := required_tags[_]
+  not resource_has_tag(resource, tag)
+}
+
+# Check if the resource has a specific tag in its "after" configuration.
+resource_has_tag(resource, tag) {
+  resource.change.after.tags[tag]
+}
+
+# Deny any resource that is missing any of the required tags.
+deny[msg] {
+  resource := input.resource_changes[_]
+  # Only check resources whose type starts with "aws_"
+  taggable(resource)
+  missing := missing_tags(resource)
+  count(missing) > 0
+  msg := sprintf("AWS resource %q is missing required tags: %v", [resource.address, missing])
+}

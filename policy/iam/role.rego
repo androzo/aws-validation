@@ -1,5 +1,9 @@
 package main
 
+import rego.v1
+
+default allow := false 
+
 # Set of resource types that do NOT accept tags
 non_taggable := {
     "aws_iam_role_policy_attachment",
@@ -13,32 +17,34 @@ non_taggable := {
     "aws_iam_instance_profile"
 }
 
-# Only check resources that accept tags.
-taggable(resource) {
-    t := resource.type
-    not (t in non_taggable)
-}
 
 # Define the required tags (all in lowercase)
-required_tags := {"team", "abacate"}
-
-# Given a resource from the Terraform plan, extract missing required tags.
-missing_tags(resource) := { tag |
-  tag := required_tags[_]
-  not resource_has_tag(resource, tag)
+required_tags := {
+  "team", 
+  "abacate"
 }
 
-# Check if the resource has a specific tag in its "after" configuration.
-resource_has_tag(resource, tag) {
-  resource.change.after.tags[tag]
-}
 
-# Deny any resource that is missing any of the required tags.
-deny[msg] {
-  resource := input.resource_changes[_]
-  # Only check resources whose type starts with "aws_"
-  taggable(resource)
-  missing := missing_tags(resource)
-  count(missing) > 0
-  msg := sprintf("AWS resource %q is missing required tags: %v", [resource.address, missing])
+# deny if resource is not tagged and is not in non_taggable
+deny contains msg if {
+    changeset := input.resource_changes[_]
+    # Ignore if block is data 
+    split(changeset.address, ".")[0] != "data"
+    changeset.change.after.tags_all
+
+    # ignore non-taggable resources
+    not changeset.type in non_taggable
+
+    # ignore modules
+    not startswith(changeset.address, "module")
+
+    provided_tags := {tag | changeset.change.after.tags_all[tag]}
+    missing_tags := required_tags - provided_tags
+
+    count(missing_tags) > 0
+
+    msg := sprintf("%v is missing required tags: %v", [
+      changeset.address,
+      concat(", ", missing_tags),
+    ])
 }
