@@ -10,7 +10,6 @@ Github Action that runs validations in AWS resources being deployed via Terrafor
 - Customizable validation rules.
 - Detailed reporting of validation results.
 
-
 ## Requirements
 - A terraform plan in json
 
@@ -51,6 +50,13 @@ jobs:
           tfplan_path: tfplan.json
 ```
 
+### Valid run
+
+![Valid run](./images/valid.png)
+
+### Invalid run
+
+![Invalid run](./images/valid.png)
 
 ## Runing locally
 
