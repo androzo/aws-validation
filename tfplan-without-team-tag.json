@@ -32,13 +32,11 @@
                         "policy": "{\"Statement\":[{\"Action\":\"s3:*\",\"Condition\":{\"StringEquals\":{\"aws:RequestTag/team\":\"team-anders\"}},\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":\"s3:ListBucket\",\"Condition\":{\"StringEquals\":{\"s3:ResourceTag/team\":\"team-anders\"}},\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
                         "tags": {
                             "Name": "team-anders-deployment-policy",
-                            "environment": "devl",
-                            "team": "devops"
+                            "environment": "devl"
                         },
                         "tags_all": {
                             "Name": "team-anders-deployment-policy",
-                            "environment": "devl",
-                            "team": "devops"
+                            "environment": "devl"
                         }
                     },
                     "sensitive_values": {
@@ -62,13 +60,11 @@
                         "path": "/deployment-roles/",
                         "tags": {
                             "Name": "team-anders-deployment-role",
-                            "environment": "devl",
-                            "team": "devops"
+                            "environment": "devl"
                         },
                         "tags_all": {
                             "Name": "team-anders-deployment-role",
-                            "environment": "devl",
-                            "team": "devops"
+                            "environment": "devl"
                         }
                     },
                     "sensitive_values": {
