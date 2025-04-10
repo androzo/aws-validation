@@ -1,5 +1,6 @@
-name: Validate IAM Role Policies
-description: Validates IAM Terraform roles using OPA and Rego policies.
+name: Validate AWS Deployments
+description: Validate AWS deployments using Open Policy Agent (OPA) and Terraform plan files.
+author: André Buchmann
 
 inputs:
   tfplan_path:
@@ -9,15 +10,19 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Install conftest
-      shell: bash
-      run: |
-        wget https://github.com/open-policy-agent/conftest/releases/download/v0.58.0/conftest_0.58.0_Linux_x86_64.tar.gz > /dev/null 2>&1
-        tar -xzf conftest_0.58.0_Linux_x86_64.tar.gz
-        chmod +x conftest && sudo mv conftest /usr/local/bin/
+    - name: Setup OPA
+      uses: open-policy-agent/setup-opa@v2
+      with:
+        version: 1.3.0
 
-    - name: Validate IAM Policies with Conftest
-      shell: bash
+    - name: Validate AWS Deployment
       run: |
-        cat ${{ inputs.tfplan_path }}
-        conftest test ${{ inputs.tfplan_path }} --policy ${{ github.action_path }}/policy/iam/
+        result=$(opa exec --decision terraform --bundle policy ${{ inputs.tfplan_path }} | jq '.result[0].result')
+        allow=$(echo "$result" | jq -r '.allow')
+        violations=$(echo "$result" | jq -r '.violations')
+        if [ "$allow" != "true" ]; then
+          echo "❌ Policy check failed: $violations"
+          exit 1
+        else
+          echo "✅ Your terraform plan has no violations. Keep being awesome!" 
+        fi
