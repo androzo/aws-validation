@@ -1,0 +1,27 @@
+name: Run AWS Validation checks
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+        
+      - name: Setup OPA
+        uses: open-policy-agent/setup-opa@v2
+        with:
+          version: 1.3.0
+
+      - name: Run OPA Tests
+        run: |
+          result=$(opa exec --decision terraform --bundle policy tfplan.json | jq '.result[0].result')
+          allow=$(echo "$result" | jq -r '.allow')
+          violations=$(echo "$result" | jq -r '.violations')
+          if [ "$allow" != "true" ]; then
+            echo "❌ Policy check failed: $violations"
+            exit 1
+          else
+            echo "✅ Your terraform plan has no violations. Keep being awesome!" 
+          fi
