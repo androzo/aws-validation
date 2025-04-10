@@ -1,4 +1,4 @@
-name: Run AWS Validation checks
+name: Run AWS Validation checks - Valid case
 
 on: [push]
 
