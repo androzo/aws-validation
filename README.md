@@ -11,9 +11,48 @@ Github Action that runs validations in AWS resources being deployed via Terrafor
 - Detailed reporting of validation results.
 
 
-## Usage
+## Requirements
+- A terraform plan in json
 
-### Tools to test locally
+```bash
+terraform plan -out=tfplan
+terraform show -json tfplan > plan.json
+```
+
+## Using Actions
+```yaml
+name: Run AWS Validation checks
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: your-role-arn
+          aws-region: your-region
+          role-session-name: some-role-session-name
+
+      - name: Init & Plan Terraform
+        run: |
+          terraform init
+          terraform plan -out=tfplan.binary
+          terraform show -json tfplan.binary > tfplan.json
+        
+      - name: Run AWS validation
+        uses: androzo/aws-validation@main
+        with:
+          tfplan_path: tfplan.json
+```
+
+
+## Runing locally
 
 - OPA (1.3.0)
 - Docker + ACT (To run GHA locally)
