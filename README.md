@@ -19,7 +19,7 @@ terraform plan -out=tfplan
 terraform show -json tfplan > plan.json
 ```
 
-## Using Actions
+## Example
 ```yaml
 name: Run AWS Validation checks
 
