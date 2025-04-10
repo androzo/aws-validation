@@ -56,7 +56,7 @@ jobs:
 
 ### Invalid run
 
-![Invalid run](./images/valid.png)
+![Invalid run](./images/invalid.png)
 
 ## Runing locally
 
