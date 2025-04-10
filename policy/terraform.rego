@@ -25,7 +25,7 @@ non_taggable := {
 # Define the required tags (all in lowercase)
 required_tags := {
   "team",
-  "cost_center"
+  "Name"
 }
 
 # deny if resource is not tagged and is not in non_taggable
