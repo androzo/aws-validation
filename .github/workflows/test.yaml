@@ -3,11 +3,11 @@ name: Run AWS Validation checks
 on: [push]
 
 jobs:
-  test:
+  test-with-opa:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         
       - name: Setup OPA
         uses: open-policy-agent/setup-opa@v2
@@ -26,3 +26,14 @@ jobs:
             echo "✅ Your terraform plan has no violations. Keep being awesome!" 
           fi
         shell: bash
+
+  test-with-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+        
+      - name: Run AWS validation
+        uses: androzo/aws-validation@main
+        with:
+          tfplan_path: tfplan.json
