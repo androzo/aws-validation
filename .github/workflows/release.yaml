@@ -16,4 +16,6 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Semantic release
+        env:
+           GITHUB_TOKEN: ${{ secrets.TOKEN_DO_GITHUB }}
         uses: androzo/semantic-release@main
