@@ -1,0 +1,33 @@
+name: Run AWS Validation checks
+
+on:
+   push:
+     branches:
+       - main
+
+permissions:
+  contents: write
+
+jobs:
+  test-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+        
+      - name: Run AWS validation
+        uses: androzo/aws-validation@main
+        with:
+          tfplan_path: tfplan.json
+
+  release:
+    needs: test-validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Semantic release
+        env:
+           GITHUB_TOKEN: ${{ secrets.TOKEN_DO_GITHUB }}
+        uses: androzo/semantic-release@main
