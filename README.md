@@ -1,6 +1,6 @@
 # ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 
-# AWS Validation 
+# AWS Validation
 Github Action that runs validations in AWS resources being deployed via Terraform. Uses Open Policy Agent to check if resources are tagged, more rules can be added to improve compliance.
 
 ## Features
