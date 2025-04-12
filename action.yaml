@@ -30,4 +30,3 @@ runs:
           echo "✅ Your terraform plan has no violations. Keep being awesome!" 
         fi
       shell: bash
-      timeout-minutes: 2
