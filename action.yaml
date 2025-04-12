@@ -20,7 +20,7 @@ runs:
 
     - name: Validate AWS Deployment
       run: |
-        result=$(opa exec --decision terraform --bundle "$(dirname "$0")/policy" ${{ inputs.tfplan_path }} | jq '.result[0].result')
+        result=$(opa exec --decision terraform --bundle "${{ github.action_path }}/policy" ${{ inputs.tfplan_path }} | jq '.result[0].result')
         allow=$(echo "$result" | jq -r '.allow')
         violations=$(echo "$result" | jq -r '.violations')
         if [ "$allow" != "true" ]; then
