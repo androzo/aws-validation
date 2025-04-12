@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/androzo/aws-validation/compare/v1.1.0...v1.2.0) (2025-04-12)
+
+
+### Features
+
+* rm space ([9f2900f](https://github.com/androzo/aws-validation/commit/9f2900ffe474999daa288468630d1fe65da69026))
+
 # [1.1.0](https://github.com/androzo/aws-validation/compare/v1.0.0...v1.1.0) (2025-04-12)
 
 
