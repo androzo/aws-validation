@@ -22,6 +22,10 @@ runs:
     - name: cat policy
       run: cat ${{ github.action_path }}/policy/terraform.rego
       shell: bash
+      
+    - name: cat policy
+      run: opa exec --decision terraform --bundle "${{ github.action_path }}/policy" ${{ inputs.tfplan_path }}
+      shell: bash
 
     - name: Validate AWS Deployment
       run: |
