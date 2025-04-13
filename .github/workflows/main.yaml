@@ -18,7 +18,7 @@ jobs:
       - name: Run AWS validation
         uses: androzo/aws-validation@main
         with:
-          tfplan_path: tfplan.json
+          tfplan_path: removingtfplan.json
 
   release:
     needs: test-validation
