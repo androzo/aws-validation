@@ -15,13 +15,11 @@ runs:
       with:
         version: 1.3.0
 
-    - name: debug
-      run: cat ${{ inputs.tfplan_path }}
-      shell: bash
-
-    - name: debug2
-      run: cat "${{ github.action_path }}/policy/terraform.rego"
-      shell: bash
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: tfplan.json
+        path: ${{ inputs.tfplan_path }}
 
     - name: Validate AWS Deployment
       run: |
