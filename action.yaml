@@ -17,9 +17,12 @@ runs:
 
     - name: Get tags
       run: jq '.resource_changes[] | select(.address == "aws_iam_policy.deployment_policy") | .change.before.tags_all' ${{ inputs.tfplan_path }}
+      shell: bash
+
 
     - name: Get tags
       run: jq '.resource_changes[] | select(.address == "aws_iam_role.deployment_role") | .change.before.tags_all' ${{ inputs.tfplan_path }}
+      shell: bash
 
     - name: Validate AWS Deployment
       run: |
