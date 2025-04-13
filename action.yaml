@@ -15,12 +15,6 @@ runs:
       with:
         version: 1.3.0
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: tfplan.json-${{ github.run_number }}
-        path: ${{ inputs.tfplan_path }}
-
     - name: Validate AWS Deployment
       run: |
         result=$(opa exec --decision terraform --bundle "${{ github.action_path }}/policy" ${{ inputs.tfplan_path }} | jq '.result[0].result')
@@ -33,4 +27,8 @@ runs:
         else
           echo "✅ Your terraform plan has no violations. Keep being awesome!" 
         fi
+      shell: bash
+
+    - name: cancel
+      run: exit 1
       shell: bash
