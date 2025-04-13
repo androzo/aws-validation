@@ -3,7 +3,7 @@
     "terraform_version": "1.5.6",
     "variables": {
         "account_number": {
-            "value": "396608777381"
+            "value": "***"
         },
         "environment": {
             "value": "devl"
@@ -26,15 +26,10 @@
                     "provider_name": "registry.terraform.io/hashicorp/aws",
                     "schema_version": 0,
                     "values": {
-                        "arn": "arn:aws:iam::396608777381:policy/team-drozer-deployment-policy",
-                        "attachment_count": 1,
                         "description": "Policy granting access to resources tagged with Team=team-drozer",
-                        "id": "arn:aws:iam::396608777381:policy/team-drozer-deployment-policy",
                         "name": "team-drozer-deployment-policy",
-                        "name_prefix": "",
                         "path": "/",
                         "policy": "{\"Statement\":[{\"Action\":\"s3:*\",\"Condition\":{\"StringEquals\":{\"aws:RequestTag/team\":\"team-drozer\"}},\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":\"s3:ListBucket\",\"Condition\":{\"StringEquals\":{\"s3:ResourceTag/team\":\"team-drozer\"}},\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
-                        "policy_id": "ANPAVYV5ZVSSYENUTI2DN",
                         "tags": {
                             "Name": "team-drozer-deployment-policy",
                             "environment": "devl"
@@ -57,21 +52,13 @@
                     "provider_name": "registry.terraform.io/hashicorp/aws",
                     "schema_version": 0,
                     "values": {
-                        "arn": "arn:aws:iam::396608777381:role/team-drozer-deployment-role",
-                        "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRoleWithWebIdentity\",\"Condition\":{\"StringEquals\":{\"token.actions.githubusercontent.com:aud\":\"sts.amazonaws.com\"},\"StringLike\":{\"token.actions.githubusercontent.com:sub\":\"repo:androzo/team-drozer-*:*devl\"}},\"Effect\":\"Allow\",\"Principal\":{\"Federated\":\"arn:aws:iam::396608777381:oidc-provider/token.actions.githubusercontent.com\"}}],\"Version\":\"2012-10-17\"}",
-                        "create_date": "2025-04-12T21:09:06Z",
-                        "description": "",
+                        "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRoleWithWebIdentity\",\"Condition\":{\"StringEquals\":{\"token.actions.githubusercontent.com:aud\":\"sts.amazonaws.com\"},\"StringLike\":{\"token.actions.githubusercontent.com:sub\":\"repo:androzo/team-drozer-*:*devl\"}},\"Effect\":\"Allow\",\"Principal\":{\"Federated\":\"arn:aws:iam::***:oidc-provider/token.actions.githubusercontent.com\"}}],\"Version\":\"2012-10-17\"}",
+                        "description": null,
                         "force_detach_policies": false,
-                        "id": "team-drozer-deployment-role",
-                        "inline_policy": [],
-                        "managed_policy_arns": [
-                            "arn:aws:iam::396608777381:policy/team-drozer-deployment-policy"
-                        ],
                         "max_session_duration": 3600,
                         "name": "team-drozer-deployment-role",
-                        "name_prefix": "",
                         "path": "/",
-                        "permissions_boundary": "arn:aws:iam::396608777381:policy/team-drozer-deployment-permission-boundary",
+                        "permissions_boundary": "arn:aws:iam::***:policy/team-drozer-deployment-permission-boundary",
                         "tags": {
                             "Name": "team-drozer-deployment-role",
                             "environment": "devl"
@@ -79,14 +66,11 @@
                         "tags_all": {
                             "Name": "team-drozer-deployment-role",
                             "environment": "devl"
-                        },
-                        "unique_id": "AROAVYV5ZVSSU3XEQINAO"
+                        }
                     },
                     "sensitive_values": {
                         "inline_policy": [],
-                        "managed_policy_arns": [
-                            false
-                        ],
+                        "managed_policy_arns": [],
                         "tags": {},
                         "tags_all": {}
                     }
@@ -99,8 +83,6 @@
                     "provider_name": "registry.terraform.io/hashicorp/aws",
                     "schema_version": 0,
                     "values": {
-                        "id": "team-drozer-deployment-role-20250412210906844900000001",
-                        "policy_arn": "arn:aws:iam::396608777381:policy/team-drozer-deployment-policy",
                         "role": "team-drozer-deployment-role"
                     },
                     "sensitive_values": {}
@@ -117,39 +99,14 @@
             "provider_name": "registry.terraform.io/hashicorp/aws",
             "change": {
                 "actions": [
-                    "update"
+                    "create"
                 ],
-                "before": {
-                    "arn": "arn:aws:iam::396608777381:policy/team-drozer-deployment-policy",
-                    "attachment_count": 1,
-                    "description": "Policy granting access to resources tagged with Team=team-drozer",
-                    "id": "arn:aws:iam::396608777381:policy/team-drozer-deployment-policy",
-                    "name": "team-drozer-deployment-policy",
-                    "name_prefix": "",
-                    "path": "/",
-                    "policy": "{\"Statement\":[{\"Action\":\"s3:*\",\"Condition\":{\"StringEquals\":{\"aws:RequestTag/team\":\"team-drozer\"}},\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":\"s3:ListBucket\",\"Condition\":{\"StringEquals\":{\"s3:ResourceTag/team\":\"team-drozer\"}},\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
-                    "policy_id": "ANPAVYV5ZVSSYENUTI2DN",
-                    "tags": {
-                        "Name": "team-drozer-deployment-policy",
-                        "environment": "devl",
-                        "team": "devops"
-                    },
-                    "tags_all": {
-                        "Name": "team-drozer-deployment-policy",
-                        "environment": "devl",
-                        "team": "devops"
-                    }
-                },
+                "before": null,
                 "after": {
-                    "arn": "arn:aws:iam::396608777381:policy/team-drozer-deployment-policy",
-                    "attachment_count": 1,
                     "description": "Policy granting access to resources tagged with Team=team-drozer",
-                    "id": "arn:aws:iam::396608777381:policy/team-drozer-deployment-policy",
                     "name": "team-drozer-deployment-policy",
-                    "name_prefix": "",
                     "path": "/",
                     "policy": "{\"Statement\":[{\"Action\":\"s3:*\",\"Condition\":{\"StringEquals\":{\"aws:RequestTag/team\":\"team-drozer\"}},\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":\"s3:ListBucket\",\"Condition\":{\"StringEquals\":{\"s3:ResourceTag/team\":\"team-drozer\"}},\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
-                    "policy_id": "ANPAVYV5ZVSSYENUTI2DN",
                     "tags": {
                         "Name": "team-drozer-deployment-policy",
                         "environment": "devl"
@@ -159,11 +116,16 @@
                         "environment": "devl"
                     }
                 },
-                "after_unknown": {},
-                "before_sensitive": {
+                "after_unknown": {
+                    "arn": true,
+                    "attachment_count": true,
+                    "id": true,
+                    "name_prefix": true,
+                    "policy_id": true,
                     "tags": {},
                     "tags_all": {}
                 },
+                "before_sensitive": false,
                 "after_sensitive": {
                     "tags": {},
                     "tags_all": {}
@@ -178,52 +140,17 @@
             "provider_name": "registry.terraform.io/hashicorp/aws",
             "change": {
                 "actions": [
-                    "update"
+                    "create"
                 ],
-                "before": {
-                    "arn": "arn:aws:iam::396608777381:role/team-drozer-deployment-role",
-                    "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRoleWithWebIdentity\",\"Condition\":{\"StringEquals\":{\"token.actions.githubusercontent.com:aud\":\"sts.amazonaws.com\"},\"StringLike\":{\"token.actions.githubusercontent.com:sub\":\"repo:androzo/team-drozer-*:*devl\"}},\"Effect\":\"Allow\",\"Principal\":{\"Federated\":\"arn:aws:iam::396608777381:oidc-provider/token.actions.githubusercontent.com\"}}],\"Version\":\"2012-10-17\"}",
-                    "create_date": "2025-04-12T21:09:06Z",
-                    "description": "",
-                    "force_detach_policies": false,
-                    "id": "team-drozer-deployment-role",
-                    "inline_policy": [],
-                    "managed_policy_arns": [
-                        "arn:aws:iam::396608777381:policy/team-drozer-deployment-policy"
-                    ],
-                    "max_session_duration": 3600,
-                    "name": "team-drozer-deployment-role",
-                    "name_prefix": "",
-                    "path": "/",
-                    "permissions_boundary": "arn:aws:iam::396608777381:policy/team-drozer-deployment-permission-boundary",
-                    "tags": {
-                        "Name": "team-drozer-deployment-role",
-                        "environment": "devl",
-                        "team": "devops"
-                    },
-                    "tags_all": {
-                        "Name": "team-drozer-deployment-role",
-                        "environment": "devl",
-                        "team": "devops"
-                    },
-                    "unique_id": "AROAVYV5ZVSSU3XEQINAO"
-                },
+                "before": null,
                 "after": {
-                    "arn": "arn:aws:iam::396608777381:role/team-drozer-deployment-role",
-                    "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRoleWithWebIdentity\",\"Condition\":{\"StringEquals\":{\"token.actions.githubusercontent.com:aud\":\"sts.amazonaws.com\"},\"StringLike\":{\"token.actions.githubusercontent.com:sub\":\"repo:androzo/team-drozer-*:*devl\"}},\"Effect\":\"Allow\",\"Principal\":{\"Federated\":\"arn:aws:iam::396608777381:oidc-provider/token.actions.githubusercontent.com\"}}],\"Version\":\"2012-10-17\"}",
-                    "create_date": "2025-04-12T21:09:06Z",
-                    "description": "",
+                    "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRoleWithWebIdentity\",\"Condition\":{\"StringEquals\":{\"token.actions.githubusercontent.com:aud\":\"sts.amazonaws.com\"},\"StringLike\":{\"token.actions.githubusercontent.com:sub\":\"repo:androzo/team-drozer-*:*devl\"}},\"Effect\":\"Allow\",\"Principal\":{\"Federated\":\"arn:aws:iam::***:oidc-provider/token.actions.githubusercontent.com\"}}],\"Version\":\"2012-10-17\"}",
+                    "description": null,
                     "force_detach_policies": false,
-                    "id": "team-drozer-deployment-role",
-                    "inline_policy": [],
-                    "managed_policy_arns": [
-                        "arn:aws:iam::396608777381:policy/team-drozer-deployment-policy"
-                    ],
                     "max_session_duration": 3600,
                     "name": "team-drozer-deployment-role",
-                    "name_prefix": "",
                     "path": "/",
-                    "permissions_boundary": "arn:aws:iam::396608777381:policy/team-drozer-deployment-permission-boundary",
+                    "permissions_boundary": "arn:aws:iam::***:policy/team-drozer-deployment-permission-boundary",
                     "tags": {
                         "Name": "team-drozer-deployment-role",
                         "environment": "devl"
@@ -231,23 +158,23 @@
                     "tags_all": {
                         "Name": "team-drozer-deployment-role",
                         "environment": "devl"
-                    },
-                    "unique_id": "AROAVYV5ZVSSU3XEQINAO"
+                    }
                 },
-                "after_unknown": {},
-                "before_sensitive": {
-                    "inline_policy": [],
-                    "managed_policy_arns": [
-                        false
-                    ],
+                "after_unknown": {
+                    "arn": true,
+                    "create_date": true,
+                    "id": true,
+                    "inline_policy": true,
+                    "managed_policy_arns": true,
+                    "name_prefix": true,
                     "tags": {},
-                    "tags_all": {}
+                    "tags_all": {},
+                    "unique_id": true
                 },
+                "before_sensitive": false,
                 "after_sensitive": {
                     "inline_policy": [],
-                    "managed_policy_arns": [
-                        false
-                    ],
+                    "managed_policy_arns": [],
                     "tags": {},
                     "tags_all": {}
                 }
@@ -261,20 +188,17 @@
             "provider_name": "registry.terraform.io/hashicorp/aws",
             "change": {
                 "actions": [
-                    "no-op"
+                    "create"
                 ],
-                "before": {
-                    "id": "team-drozer-deployment-role-20250412210906844900000001",
-                    "policy_arn": "arn:aws:iam::396608777381:policy/team-drozer-deployment-policy",
-                    "role": "team-drozer-deployment-role"
-                },
+                "before": null,
                 "after": {
-                    "id": "team-drozer-deployment-role-20250412210906844900000001",
-                    "policy_arn": "arn:aws:iam::396608777381:policy/team-drozer-deployment-policy",
                     "role": "team-drozer-deployment-role"
                 },
-                "after_unknown": {},
-                "before_sensitive": {},
+                "after_unknown": {
+                    "id": true,
+                    "policy_arn": true
+                },
+                "before_sensitive": false,
                 "after_sensitive": {}
             }
         }
@@ -293,10 +217,10 @@
                         "provider_name": "registry.terraform.io/hashicorp/aws",
                         "schema_version": 0,
                         "values": {
-                            "arn": "arn:aws:iam::396608777381:policy/team-drozer-deployment-permission-boundary",
+                            "arn": "arn:aws:iam::***:policy/team-drozer-deployment-permission-boundary",
                             "attachment_count": 0,
                             "description": "Permissions boundary for deployment role",
-                            "id": "arn:aws:iam::396608777381:policy/team-drozer-deployment-permission-boundary",
+                            "id": "arn:aws:iam::***:policy/team-drozer-deployment-permission-boundary",
                             "name": "team-drozer-deployment-permission-boundary",
                             "path": "/",
                             "path_prefix": null,
@@ -310,105 +234,6 @@
                         "sensitive_values": {
                             "tags": {}
                         }
-                    },
-                    {
-                        "address": "aws_iam_policy.deployment_policy",
-                        "mode": "managed",
-                        "type": "aws_iam_policy",
-                        "name": "deployment_policy",
-                        "provider_name": "registry.terraform.io/hashicorp/aws",
-                        "schema_version": 0,
-                        "values": {
-                            "arn": "arn:aws:iam::396608777381:policy/team-drozer-deployment-policy",
-                            "attachment_count": 1,
-                            "description": "Policy granting access to resources tagged with Team=team-drozer",
-                            "id": "arn:aws:iam::396608777381:policy/team-drozer-deployment-policy",
-                            "name": "team-drozer-deployment-policy",
-                            "name_prefix": "",
-                            "path": "/",
-                            "policy": "{\"Statement\":[{\"Action\":\"s3:*\",\"Condition\":{\"StringEquals\":{\"aws:RequestTag/team\":\"team-drozer\"}},\"Effect\":\"Allow\",\"Resource\":\"*\"},{\"Action\":\"s3:ListBucket\",\"Condition\":{\"StringEquals\":{\"s3:ResourceTag/team\":\"team-drozer\"}},\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
-                            "policy_id": "ANPAVYV5ZVSSYENUTI2DN",
-                            "tags": {
-                                "Name": "team-drozer-deployment-policy",
-                                "environment": "devl",
-                                "team": "devops"
-                            },
-                            "tags_all": {
-                                "Name": "team-drozer-deployment-policy",
-                                "environment": "devl",
-                                "team": "devops"
-                            }
-                        },
-                        "sensitive_values": {
-                            "tags": {},
-                            "tags_all": {}
-                        }
-                    },
-                    {
-                        "address": "aws_iam_role.deployment_role",
-                        "mode": "managed",
-                        "type": "aws_iam_role",
-                        "name": "deployment_role",
-                        "provider_name": "registry.terraform.io/hashicorp/aws",
-                        "schema_version": 0,
-                        "values": {
-                            "arn": "arn:aws:iam::396608777381:role/team-drozer-deployment-role",
-                            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRoleWithWebIdentity\",\"Condition\":{\"StringEquals\":{\"token.actions.githubusercontent.com:aud\":\"sts.amazonaws.com\"},\"StringLike\":{\"token.actions.githubusercontent.com:sub\":\"repo:androzo/team-drozer-*:*devl\"}},\"Effect\":\"Allow\",\"Principal\":{\"Federated\":\"arn:aws:iam::396608777381:oidc-provider/token.actions.githubusercontent.com\"}}],\"Version\":\"2012-10-17\"}",
-                            "create_date": "2025-04-12T21:09:06Z",
-                            "description": "",
-                            "force_detach_policies": false,
-                            "id": "team-drozer-deployment-role",
-                            "inline_policy": [],
-                            "managed_policy_arns": [
-                                "arn:aws:iam::396608777381:policy/team-drozer-deployment-policy"
-                            ],
-                            "max_session_duration": 3600,
-                            "name": "team-drozer-deployment-role",
-                            "name_prefix": "",
-                            "path": "/",
-                            "permissions_boundary": "arn:aws:iam::396608777381:policy/team-drozer-deployment-permission-boundary",
-                            "tags": {
-                                "Name": "team-drozer-deployment-role",
-                                "environment": "devl",
-                                "team": "devops"
-                            },
-                            "tags_all": {
-                                "Name": "team-drozer-deployment-role",
-                                "environment": "devl",
-                                "team": "devops"
-                            },
-                            "unique_id": "AROAVYV5ZVSSU3XEQINAO"
-                        },
-                        "sensitive_values": {
-                            "inline_policy": [],
-                            "managed_policy_arns": [
-                                false
-                            ],
-                            "tags": {},
-                            "tags_all": {}
-                        },
-                        "depends_on": [
-                            "data.aws_iam_policy.permissions_boundary"
-                        ]
-                    },
-                    {
-                        "address": "aws_iam_role_policy_attachment.attach_deployment_policy",
-                        "mode": "managed",
-                        "type": "aws_iam_role_policy_attachment",
-                        "name": "attach_deployment_policy",
-                        "provider_name": "registry.terraform.io/hashicorp/aws",
-                        "schema_version": 0,
-                        "values": {
-                            "id": "team-drozer-deployment-role-20250412210906844900000001",
-                            "policy_arn": "arn:aws:iam::396608777381:policy/team-drozer-deployment-policy",
-                            "role": "team-drozer-deployment-role"
-                        },
-                        "sensitive_values": {},
-                        "depends_on": [
-                            "aws_iam_policy.deployment_policy",
-                            "aws_iam_role.deployment_role",
-                            "data.aws_iam_policy.permissions_boundary"
-                        ]
                     }
                 ]
             }
@@ -546,7 +371,19 @@
             "attribute": [
                 "arn"
             ]
+        },
+        {
+            "resource": "aws_iam_role.deployment_role",
+            "attribute": [
+                "name"
+            ]
+        },
+        {
+            "resource": "aws_iam_policy.deployment_policy",
+            "attribute": [
+                "arn"
+            ]
         }
     ],
-    "timestamp": "2025-04-13T16:19:41Z"
+    "timestamp": "2025-04-13T18:51:15Z"
 }
